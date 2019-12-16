@@ -31,8 +31,14 @@ elif sys.argv[1]== "-r" or sys.argv[1]== "--remove":
     todolist=open(filename,'w')
     strToDo=""
     #print(todos)
-    for j in range(len(todos)):
-        if(j!=int(sys.argv[2])):
+    if int(sys.argv[2])<len(todos):
+        for j in range(len(todos)):
+            if(j!=int(sys.argv[2])):
+                strToDo+=todos[j]
+        todolist.write(strToDo)
+    else:
+        print('Не существует задачи под этим номером')
+        for j in range(len(todos)):
             strToDo+=todos[j]
-    todolist.write(strToDo)
+        todolist.write(strToDo)
     todolist.close()
