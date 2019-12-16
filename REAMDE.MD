@@ -1,1 +1,1 @@
-This is script for store your ToDo's for terminal 
+This is script for store your ToDo's. Working in terminal.
