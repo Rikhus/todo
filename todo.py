@@ -44,4 +44,4 @@ elif sys.argv[1]== "-r" or sys.argv[1]== "--remove":
     todolist.close()
 
 else:
-    print('Usage: todo [parameters]\ntodo - list of your ToDo\'s\nParameters: \n -a [some words]- add ToDo\n -r [index]- remove ToDo by index\n\n')
+    print('Usage: todo [parameters]\ntodo - list of your ToDo\'s\nParameters: \n -a [some words]- add ToDo\n -r [index]- remove ToDo by index')
