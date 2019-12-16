@@ -37,8 +37,11 @@ elif sys.argv[1]== "-r" or sys.argv[1]== "--remove":
                 strToDo+=todos[j]
         todolist.write(strToDo)
     else:
-        print('Не существует задачи под этим номером')
+        print('Cannot find this index')
         for j in range(len(todos)):
             strToDo+=todos[j]
         todolist.write(strToDo)
     todolist.close()
+
+else:
+    print('Usage: todo [parameters]\ntodo - list of your ToDo\'s\nParameters: \n -a [some words]- add ToDo\n -r [index]- remove ToDo by index\n\n')
