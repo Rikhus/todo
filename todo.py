@@ -4,6 +4,14 @@ import os,sys
 home=os.getenv("HOME")
 #if(os.path.isfile(home+'/.todo/todo')):
 filename=home+'/.todo/todo'
+try:
+    test=open(filename,'r')
+    test.close()
+except:
+    os.mkdir(home+'/.todo')
+    test=open(filename,'w')
+    test.close()
+
 if len(sys.argv)==1:
     todolist=open(filename,'r')
     i=0
