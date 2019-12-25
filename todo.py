@@ -12,23 +12,26 @@ except:
     test=open(filename,'w')
     test.close()
 
-if len(sys.argv)==1:
+def returnTodo(filename):
     todolist=open(filename,'r')
     i=0
+    s=''
     for todo in todolist:
-        print(str(i)+'.',todo)
+        s+=str(i)+'. '+todo+'\n'
         i+=1
     todolist.close()
-    
-elif sys.argv[1] == "-a" or sys.argv[1]== "--add":
+    return s
+
+def addTodo(filename,todoForAdd):
     todolist=open(filename,'a')
     todo=""
-    for word in sys.argv[2:]:
-        todo+=word+" "   
+    for word in todoForAdd:
+        todo+=word 
     todo+="\n"
     todolist.write(todo)
     todolist.close()
-elif sys.argv[1]== "-r" or sys.argv[1]== "--remove":
+
+def removeTodo(filename,todoToRemove):
     todolist=open(filename,'r')
     i=0
     todos=[]
@@ -39,17 +42,40 @@ elif sys.argv[1]== "-r" or sys.argv[1]== "--remove":
     todolist=open(filename,'w')
     strToDo=""
     #print(todos)
-    if int(sys.argv[2])<len(todos):
+    if int(todoToRemove)<len(todos):
         for j in range(len(todos)):
-            if(j!=int(sys.argv[2])):
+            if(j!=int(todoToRemove)):
                 strToDo+=todos[j]
         todolist.write(strToDo)
+        return True
     else:
         print('Cannot find this index')
         for j in range(len(todos)):
             strToDo+=todos[j]
         todolist.write(strToDo)
+        return False
     todolist.close()
 
-else:
-    print('Usage: todo [parameters]\ntodo - list of your ToDo\'s\nParameters: \n -a [some words]- add ToDo\n -r [index]- remove ToDo by index')
+def commandLine(filename):
+    print('***Select the action***\nl-print your ToDo\'s  a-add ToDo  d-delete ToDo  e-exit')
+    command=input('>>> ')
+    if command=='a':
+        todoForAdd=str(input('write your ToDo: '))        
+        if todoForAdd!='':
+            addTodo(filename,todoForAdd)
+            print('Added')
+        else:
+            print('Blank text!')
+    elif command=='l':
+        print(returnTodo(filename))
+    elif command=='d':
+        i=int(input('type the ToDo\'s index:'))
+        removeTodo(filename,i)
+        print('Removed')
+    elif command=='e':
+        exit(0)
+    else:
+        print('Incorrect command!')
+
+while True:
+    commandLine(filename)
